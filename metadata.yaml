@@ -15,5 +15,5 @@
 homepage: "https://www.lead-alliance.net"
 documentation: "https://www.lead-alliance.net"
 versions:
-  - sha: 5f02a788b90ae804f86b04aa24af8937e567874a
+  - sha: 1095cbcce250b0ef55add183d70eeb451568354e
     changeNotes: Initial Version
