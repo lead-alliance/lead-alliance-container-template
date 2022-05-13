@@ -1,32 +1,25 @@
-// Copyright 2019 Google LLC
+___TERMS_OF_SERVICE___
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+By creating or modifying this file you agree to Google Tag Manager's Community
+Template Gallery Developer Terms of Service available at
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+Google may provide), as modified from time to time.
 
-//     https://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 ___INFO___
 
 {
-  "displayName": "Example Template",
-  "description": "This is an example template. For more information, visit https://developers.google.com/tag-manager/templates",
-  "categories": ["AFFILIATE_MARKETING", "ADVERTISING"],
-  "securityGroups": [],
-  "id": "cvt_temp_public_id",
   "type": "TAG",
+  "id": "cvt_temp_public_id",
   "version": 1,
+  "securityGroups": [],
+  "displayName": "lead-alliance container",
+  "categories": ["AFFILIATE_MARKETING", "ADVERTISING"],
   "brand": {
-    "thumbnail": "",
-    "displayName": "",
-    "id": "brand_dummy"
+    "id": "brand_dummy",
+    "displayName": ""
   },
+  "description": "lead-alliance container tag",
   "containerContexts": [
     "WEB"
   ]
@@ -37,13 +30,567 @@ ___TEMPLATE_PARAMETERS___
 
 [
   {
-    "help": "Enter an example measurement ID. The value can be any character. This is only an example.",
-    "displayName": "Example Measurement ID",
-    "defaultValue": "foobarbaz1234",
-    "name": "MeasurementID",
-    "type": "TEXT"
+    "type": "TEXT",
+    "name": "containerId",
+    "displayName": "Container-Id",
+    "simpleValueType": true,
+    "help": "20-stellige container Id"
+  },
+  {
+    "type": "SELECT",
+    "name": "event",
+    "displayName": "Seitentyp",
+    "selectItems": [
+      {
+        "value": "PageView",
+        "displayValue": "PageView"
+      },
+      {
+        "value": "CategoryView",
+        "displayValue": "CategoryView"
+      },
+      {
+        "value": "ProductView",
+        "displayValue": "ProductView"
+      },
+      {
+        "value": "CartView",
+        "displayValue": "CartView"
+      },
+      {
+        "value": "Sale",
+        "displayValue": "Sale"
+      }
+    ],
+    "simpleValueType": true,
+    "alwaysInSummary": false,
+    "subParams": [
+      {
+        "type": "TEXT",
+        "name": "categoryId",
+        "displayName": "Category-Id*",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "CategoryView",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "defaultValue": "{{categoryId}}"
+      },
+      {
+        "type": "TEXT",
+        "name": "categoryName",
+        "displayName": "Category-Name*",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "CategoryView",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "defaultValue": "{{categoryName}}"
+      },
+      {
+        "type": "TEXT",
+        "name": "currency",
+        "displayName": "Currency",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "ProductView",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "defaultValue": "EUR"
+      },
+      {
+        "type": "TEXT",
+        "name": "productId",
+        "displayName": "Product-Id",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "ProductView",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "defaultValue": "{{productId}}"
+      },
+      {
+        "type": "TEXT",
+        "name": "productName",
+        "displayName": "Product-Name",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "ProductView",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "defaultValue": "{{productName}}"
+      },
+      {
+        "type": "TEXT",
+        "name": "productPrice",
+        "displayName": "Product-Price",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "ProductView",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "defaultValue": "{{productPrice}}"
+      },
+      {
+        "type": "TEXT",
+        "name": "productCategory",
+        "displayName": "Product-Category",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "ProductView",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "defaultValue": "{{productCategory}}"
+      },
+      {
+        "type": "SELECT",
+        "name": "trackingKind",
+        "displayName": "kind of tracking",
+        "selectItems": [
+          {
+            "value": "basic",
+            "displayValue": "Basic Tracking"
+          },
+          {
+            "value": "basket",
+            "displayValue": "Basket Tracking"
+          }
+        ],
+        "simpleValueType": true,
+        "help": "Basic Tracking or Basket Tracking with Items in different commission categories",
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "Sale",
+            "type": "EQUALS"
+          }
+        ]
+      },
+      {
+        "type": "SELECT",
+        "name": "shopsystemBasic",
+        "displayName": "Shopsystem",
+        "selectItems": [
+          {
+            "value": "none",
+            "displayValue": ""
+          },
+          {
+            "value": "shopify",
+            "displayValue": "Shopify"
+          }
+        ],
+        "simpleValueType": true,
+        "help": "Auto fill in Variables for shopsystem doku",
+        "enablingConditions": [
+          {
+            "paramName": "trackingKind",
+            "paramValue": "basic",
+            "type": "EQUALS"
+          }
+        ]
+      },
+      {
+        "type": "SELECT",
+        "name": "shopsystemBasket",
+        "displayName": "Shopsystem",
+        "selectItems": [
+          {
+            "value": "none",
+            "displayValue": ""
+          },
+          {
+            "value": "shopify",
+            "displayValue": "Shopify"
+          }
+        ],
+        "simpleValueType": true,
+        "help": "Auto fill in Variables for shopsystem doku",
+        "enablingConditions": [
+          {
+            "paramName": "trackingKind",
+            "paramValue": "basket",
+            "type": "EQUALS"
+          }
+        ]
+      },
+      {
+        "type": "TEXT",
+        "name": "oid",
+        "displayName": "Order-Id",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "shopsytemBasic",
+            "paramValue": "none",
+            "type": "EQUALS"
+          },
+          {
+            "paramName": "shopsystemBasket",
+            "paramValue": "none",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "type": "TEXT",
+        "name": "oidShopify",
+        "displayName": "Order-Id",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "shopsystemBasic",
+            "paramValue": "shopify",
+            "type": "EQUALS"
+          },
+          {
+            "paramName": "shopsystemBasket",
+            "paramValue": "shopify",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": "",
+        "defaultValue": "{{transaction_id}}"
+      },
+      {
+        "type": "TEXT",
+        "name": "ocurrency",
+        "displayName": "Currency",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "Sale",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": "",
+        "defaultValue": "EUR"
+      },
+      {
+        "type": "TEXT",
+        "name": "ocategory",
+        "displayName": "Commission Category",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "trackingKind",
+            "paramValue": "basic",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "type": "TEXT",
+        "name": "ovalue",
+        "displayName": "Order Value",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "shopsystemBasic",
+            "paramValue": "none",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "type": "TEXT",
+        "name": "ovalueShopify",
+        "displayName": "Order Value",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "shopsystemBasic",
+            "paramValue": "shopify",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": "",
+        "defaultValue": "{{totalValue}}"
+      },
+      {
+        "type": "TEXT",
+        "name": "products",
+        "displayName": "Products",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "CartView",
+            "type": "EQUALS"
+          },
+          {
+            "paramName": "trackingKind",
+            "paramValue": "basket",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": "Product-Array: eg.\n [\n{\n\u0027productId\u0027:\u00271234\u0027,\n \u0027cid\u0027:\u0027exampleCategory\u0027,\n\u0027productName\u0027:\u0027exampleName\u0027,\n\u0027productPrice\u0027 :\u002710.5\u0027,\n\u0027productQuantity\u0027:\u00272\u0027\n\u0027productCategory\u0027:\u0027/examplePath\u0027\n}\n]",
+        "defaultValue": "{{productArray}}"
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "furtherPage",
+        "checkboxText": "Weitere PageView Parameter",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "PageView",
+            "type": "EQUALS"
+          }
+        ],
+        "subParams": [
+          {
+            "type": "TEXT",
+            "name": "refererURL",
+            "displayName": "Referer URL",
+            "simpleValueType": true,
+            "enablingConditions": [
+              {
+                "paramName": "furtherPage",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "furtherCategory",
+        "checkboxText": "Weitere  CategoryView Parameter",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "CategoryView",
+            "type": "EQUALS"
+          }
+        ],
+        "subParams": []
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "furtherProduct",
+        "checkboxText": "Weitere ProductView Parameter",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "ProductView",
+            "type": "EQUALS"
+          }
+        ],
+        "subParams": []
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "furtherCart",
+        "checkboxText": "Weitere CartView Parameter",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "CartView",
+            "type": "EQUALS"
+          }
+        ],
+        "subParams": []
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "furtherSale",
+        "checkboxText": "Weitere Sales Parameter",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "event",
+            "paramValue": "Sale",
+            "type": "EQUALS"
+          }
+        ],
+        "subParams": []
+      }
+    ]
   }
 ]
+
+
+___SANDBOXED_JS_FOR_WEB_TEMPLATE___
+
+// Require the necessary APIs
+const logToConsole = require('logToConsole');
+const injectScript = require('injectScript');
+const queryPermission = require('queryPermission');
+const encode = require('encodeUriComponent');
+const callInWindow = require('callInWindow');
+const makeTableMap = require('makeTableMap');
+const createQueue = require('createQueue');
+const log = require('logToConsole');
+
+
+const additionalParameters = data.additionalParameters ?  makeTableMap(data.additionalParameters, 'parameterName', 'parameterValue') : {};
+let containerData;
+let containerId = data.containerId;
+
+// Create the global _lea queue if it doesn't yet exists
+const _lea = createQueue('_lea');
+
+if(data.event == 'PageView') {
+  containerData = {
+      id: containerId,
+      event: data.event
+    };
+} else if(data.event == 'CategoryView') {
+  containerData = {
+      id: containerId,
+      event: data.event,
+      categoryId: data.categoryId,
+      categoryName: data.categoryName
+    };
+} else if(data.event == 'ProductView') {
+  containerData = {
+      id: containerId,
+      event: data.event,
+      currency: data.currency,
+      productId: data.productId,
+      productName: data.productName,
+      productPrice:data.productPrice,
+      productCategory: data.productCategory
+    };
+} else if(data.event == 'CartView') {
+  containerData = {
+      id: containerId,
+      event: data.event,
+      currency: data.currency,
+      products: data.products
+    };
+} else if(data.event == 'Sale') {
+  containerData = {
+      id: containerId,
+      event: data.event,
+      site: 'checkout',
+      ocurrency: data.ocurrency,
+    channel: data.channel
+    };
+    if(data.shopsystem == 'shopify') {
+      containerData.oid = data.oidShopify;
+    } else {
+      containerData.oid = data.oid;
+    }
+  
+  if(data.trackingKind == 'basic') {
+       containerData.ocategory = data.ocategory;
+    if(data.shopsystem == 'shopify') {
+      containerData.ovalue = data.ovalueShopify;
+    } else {
+      containerData.ovalue = data.ovalue;
+    }
+  } else if(data.trackingKind == 'basket') {
+    containerData.basket = 'true';
+    containerData.products = data.products;
+  }
+  
+}
+
+
+callInWindow('_lea.push', containerData);
+injectScript("https://www.lead-alliance.net/lila.js", data.gtmOnSuccess, data.gtmOnFailure, 'asyncadf');
 
 
 ___WEB_PERMISSIONS___
@@ -65,46 +612,147 @@ ___WEB_PERMISSIONS___
         }
       ]
     },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
     "isRequired": true
   },
   {
     "instance": {
       "key": {
-        "publicId": "get_referrer",
+        "publicId": "access_globals",
         "versionId": "1"
       },
       "param": [
         {
-          "key": "urlParts",
+          "key": "keys",
           "value": {
-            "type": 1,
-            "string": "any"
+            "type": 2,
+            "listItem": [
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "_lea"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "_lea.push"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              }
+            ]
           }
         }
       ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "inject_script",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "urls",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "https://*.lead-alliance.net/*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
     },
     "isRequired": true
   }
 ]
 
 
-___SANDBOXED_JS_FOR_WEB_TEMPLATE___
+___TESTS___
 
-// Enter your template code here.
-const queryPermission = require('queryPermission');
-const getReferrerUrl = require('getReferrerUrl');
-let referrer;
-if (queryPermission('get_referrer', 'query')) {
-  referrer = getReferrerUrl('queryParams');
-}
-
-var log = require('logToConsole');
-log('data =', data);
-
-// Call data.gtmOnSuccess when the tag is finished.
-data.gtmOnSuccess();
+scenarios: []
 
 
 ___NOTES___
 
-Created on 9/2/2019, 1:02:37 PM
+Created on 13.5.2022, 15:34:02
+
+
