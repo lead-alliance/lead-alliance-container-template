@@ -14,7 +14,6 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "lead-alliance container",
-  "categories": ["AFFILIATE_MARKETING", "ADVERTISING"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -229,8 +228,8 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Shopsystem",
         "selectItems": [
           {
-            "value": "none",
-            "displayValue": ""
+            "value": "no",
+            "displayValue": "no"
           },
           {
             "value": "shopify",
@@ -253,8 +252,8 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Shopsystem",
         "selectItems": [
           {
-            "value": "none",
-            "displayValue": ""
+            "value": "no",
+            "displayValue": "no"
           },
           {
             "value": "shopify",
@@ -278,13 +277,13 @@ ___TEMPLATE_PARAMETERS___
         "simpleValueType": true,
         "enablingConditions": [
           {
-            "paramName": "shopsytemBasic",
-            "paramValue": "none",
+            "paramName": "shopsystemBasic",
+            "paramValue": "no",
             "type": "EQUALS"
           },
           {
             "paramName": "shopsystemBasket",
-            "paramValue": "none",
+            "paramValue": "shopify",
             "type": "EQUALS"
           }
         ],
@@ -367,7 +366,7 @@ ___TEMPLATE_PARAMETERS___
         "enablingConditions": [
           {
             "paramName": "shopsystemBasic",
-            "paramValue": "none",
+            "paramValue": "no",
             "type": "EQUALS"
           }
         ],
@@ -523,7 +522,7 @@ const callInWindow = require('callInWindow');
 const makeTableMap = require('makeTableMap');
 const createQueue = require('createQueue');
 const log = require('logToConsole');
-
+log(data);
 
 const additionalParameters = data.additionalParameters ?  makeTableMap(data.additionalParameters, 'parameterName', 'parameterValue') : {};
 let containerData;
@@ -569,7 +568,7 @@ if(data.event == 'PageView') {
       ocurrency: data.ocurrency,
     channel: data.channel
     };
-    if(data.shopsystem == 'shopify') {
+    if(data.shopsystemBasic == 'shopify' || data.shopsystemBasket == 'shopify') {
       containerData.oid = data.oidShopify;
     } else {
       containerData.oid = data.oid;
@@ -577,7 +576,7 @@ if(data.event == 'PageView') {
   
   if(data.trackingKind == 'basic') {
        containerData.ocategory = data.ocategory;
-    if(data.shopsystem == 'shopify') {
+    if(data.shopsystemBasic == 'shopify') {
       containerData.ovalue = data.ovalueShopify;
     } else {
       containerData.ovalue = data.ovalue;
@@ -754,6 +753,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 3.6.2022, 15:46:19
+Created on 31.5.2023, 14:01:09
 
 
