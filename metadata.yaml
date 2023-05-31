@@ -16,8 +16,10 @@ homepage: "https://www.lead-alliance.net"
 documentation: "https://www.lead-alliance.net"
 versions:
 # Latest version
+  - sha: a403f4ba3a62ab3d2c0a39e107c5b6164bfd1968
+    changeNotes: order-id changes
+# Older versions
   - sha: b51691e7c0f67fcc43311d3121ce6a748c5de930
     changeNotes: added Icon
-# Older versions
   - sha: 1095cbcce250b0ef55add183d70eeb451568354e
     changeNotes: Initial Version
