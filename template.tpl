@@ -522,7 +522,6 @@ const callInWindow = require('callInWindow');
 const makeTableMap = require('makeTableMap');
 const createQueue = require('createQueue');
 const log = require('logToConsole');
-log(data);
 
 const additionalParameters = data.additionalParameters ?  makeTableMap(data.additionalParameters, 'parameterName', 'parameterValue') : {};
 let containerData;
